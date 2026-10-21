@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Café Concha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBFBF9;--ink:#15182E;--muted:#6A6D85;--line:#15182E1F;--accent:#1D3FBB;--on-accent:#FBFBF9;--tint:#1D3FBB1A;
+--display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;--body:"Newsreader",Georgia,serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1022;--ink:#F3F1EC;--muted:#9EA1BD;--line:#F3F1EC24;--accent:#8FA6FF;--on-accent:#0E1022;--tint:#8FA6FF22}}
+:root[data-theme="dark"]{--bg:#0E1022;--ink:#F3F1EC;--muted:#9EA1BD;--line:#F3F1EC24;--accent:#8FA6FF;--on-accent:#0E1022;--tint:#8FA6FF22}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.125rem/1.6 var(--body)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;font-family:var(--display)}
+.brand{font-weight:800;font-size:1.2rem;letter-spacing:-.02em;text-decoration:none}
+header a.l{font-weight:500;text-decoration:none;color:var(--muted)}header a.l:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;min-height:68vh;padding:2rem 0 4rem}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,7.5vw,5.2rem);line-height:.98;letter-spacing:-.045em;margin:0 0 1.25rem}
+.hero p{color:var(--muted);max-width:32ch;margin:0 0 2rem}
+.pill{display:inline-block;font-family:var(--display);font-weight:800;background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:.85rem 1.5rem;text-decoration:none;transition:transform .15s}
+.pill:hover{transform:translateY(-2px)}
+svg.art{width:100%;height:auto;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+svg.art .fill{fill:var(--tint);stroke:none}
+svg.art .st{stroke:var(--accent)}
+.hero svg{max-width:380px;justify-self:center}
+.hero .steam{stroke-dasharray:6 8;animation:steam 3.2s ease-in-out infinite}
+.hero .steam:nth-of-type(2){animation-delay:.9s}
+@keyframes steam{0%,100%{transform:translateY(0);opacity:.35}50%{transform:translateY(-8px);opacity:1}}
+section{padding:4.5rem 0;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.5vw,2.6rem);letter-spacing:-.03em;margin:0 0 2rem;line-height:1.05}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.tabs button{font-family:var(--display);font-weight:500;background:none;border:1px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;transition:background .15s,color .15s}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.menu{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start}
+ul.list{list-style:none;margin:0;padding:0}
+.row{display:flex;align-items:center;gap:1rem;padding:1rem .75rem;margin:0 -.75rem;border-bottom:1px solid var(--line);border-radius:12px;transition:background .15s}
+.row.on{background:var(--tint)}
+.row .nm{flex:1;background:none;border:0;text-align:left;padding:0}
+.row .nm b{font-family:var(--display);font-weight:800;display:block;line-height:1.2}
+.row .nm small{color:var(--muted);font-style:italic;font-size:.98rem}
+.row .pr{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums}
+.add{width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid var(--line);background:none;font-size:1.3rem;line-height:1;display:grid;place-items:center;transition:background .15s,transform .15s}
+.add:hover,.add.done{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.add:active{transform:scale(.88)}
+.panel{position:sticky;top:1.5rem;text-align:center;padding:2rem;border:1px solid var(--line);border-radius:24px}
+.panel svg{max-width:220px;margin:0 auto 1rem;display:block}
+.panel svg.pop{animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.panel h3{font-family:var(--display);font-weight:800;font-size:1.5rem;margin:0}
+.panel p{color:var(--muted);margin:.25rem 0 1.25rem}
+.visit{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;color:var(--muted)}
+.visit h3{font-family:var(--display);font-weight:800;font-size:1.05rem;margin:0 0 .4rem;color:var(--ink)}
+.visit p{margin:0}
+footer{padding:2rem 0 7rem;border-top:1px solid var(--line);color:var(--muted);font-size:1rem}
+/* Pedido */
+.bar{position:fixed;left:0;right:0;bottom:0;padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .3s;z-index:5}
+.bar.show{transform:none}
+.bar .in{max-width:560px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:20px;overflow:hidden;box-shadow:0 8px 30px #0003}
+.bar .head{width:100%;display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.25rem;background:none;border:0;font-family:var(--display);font-weight:800}
+.drawer{padding:0 1.25rem 1rem;display:none;border-top:1px solid #8883}
+.drawer.open{display:block}
+.drawer .li{display:flex;align-items:center;gap:.75rem;padding:.6rem 0;font-family:var(--display)}
+.drawer .li span:first-child{flex:1}
+.q{display:inline-flex;align-items:center;gap:.5rem}
+.q button{width:1.8rem;height:1.8rem;border-radius:50%;border:1px solid #8886;background:none;line-height:1}
+.drawer .ft{display:flex;justify-content:space-between;align-items:center;padding-top:.6rem;gap:1rem}
+.drawer .ft button{background:none;border:0;text-decoration:underline;opacity:.8}
+.drawer .ok{margin:.5rem 0 0;font-size:.98rem;opacity:.85}
+@media (max-width:780px){
+.hero{grid-template-columns:1fr;min-height:0;padding-top:0}.hero svg{max-width:240px;justify-self:start;order:-1}
+.menu{grid-template-columns:1fr;gap:1.5rem}.panel{position:static;order:-1;padding:1.25rem}.panel svg{max-width:130px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero .steam,.panel svg.pop{animation:none}.bar,.pill,.add{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="#top">Café Concha</a><a class="l" href="#visitanos">Visítanos</a></header>
+<main id="top">
+<div class="hero">
+<div>
+<h1>Café, pan y buena mesa.</h1>
+<p>Granos de Chiapas y Veracruz, y conchas recién salidas del horno cada mañana.</p>
+<a class="pill" href="#menu">Armar mi pedido</a>
+</div>
+<svg class="art" viewBox="0 0 120 120" role="img" aria-label="Taza de café con vapor">
+<path class="fill" d="M25 52h60v20a24 24 0 0 1-24 24H49a24 24 0 0 1-24-24z"/>
+<path d="M25 52h60v20a24 24 0 0 1-24 24H49a24 24 0 0 1-24-24z"/><path d="M85 58h6a10 10 0 0 1 0 20h-8"/><path d="M18 106h78"/>
+<path class="st steam" d="M46 42c-6-8 6-12 0-20"/><path class="st steam" d="M64 42c-6-8 6-12 0-20"/>
+</svg>
+</div>
+
+<section id="menu" aria-labelledby="t-menu">
+<h2 id="t-menu">Menú</h2>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="menu">
+<ul class="list" id="list"></ul>
+<aside class="panel" aria-live="polite" id="panel"></aside>
+</div>
+</section>
+
+<section id="visitanos" aria-labelledby="t-v">
+<h2 id="t-v">Visítanos</h2>
+<div class="visit">
+<div><h3>Dirección</h3><p>Calle Hidalgo 123, Centro</p></div>
+<div><h3>Horario</h3><p>Lunes a sábado, 7:00 a 20:00<br>Domingo, 8:00 a 15:00</p></div>
+<div><h3>Contacto</h3><p>hola@cafeconcha.mx</p></div>
+</div>
+</section>
+</main>
+<footer>© 2026 Café Concha</footer>
+</div>
+
+<div class="bar" id="bar"><div class="in">
+<button class="head" id="toggle" aria-expanded="false" aria-controls="drawer"><span id="count"></span><span id="total"></span></button>
+<div class="drawer" id="drawer"></div>
+</div></div>
+
+<script>
+const A='<svg class="art" viewBox="0 0 120 120" aria-hidden="true">';
+const ART={
+cup:A+'<path class="fill" d="M25 52h60v20a24 24 0 0 1-24 24H49a24 24 0 0 1-24-24z"/><path d="M25 52h60v20a24 24 0 0 1-24 24H49a24 24 0 0 1-24-24z"/><path d="M85 58h6a10 10 0 0 1 0 20h-8"/><path d="M18 106h78"/><path class="st" d="M46 42c-6-8 6-12 0-20M64 42c-6-8 6-12 0-20"/></svg>',
+mug:A+'<path class="fill" d="M30 44h50v38a16 16 0 0 1-16 16H46a16 16 0 0 1-16-16z"/><path d="M30 44h50v38a16 16 0 0 1-16 16H46a16 16 0 0 1-16-16z"/><path d="M80 54h8a10 10 0 0 1 0 22h-8"/><path class="st" d="M45 34c-4-6 4-8 0-14M62 34c-4-6 4-8 0-14"/></svg>',
+glass:A+'<path class="fill" d="M41 50h38l-3 46H44z"/><path d="M38 24h44l-6 72H44z"/><path class="st" d="M72 10l-6 40"/></svg>',
+concha:A+'<circle class="fill" cx="60" cy="62" r="38"/><circle cx="60" cy="62" r="38"/><path class="st" d="M28 50c20 9 44 9 64 0M23 64c24 11 50 11 74 0M30 78c19 8 41 8 60 0"/></svg>',
+croissant:A+'<path class="fill" d="M14 78c4-30 24-48 46-48s42 18 46 48c-8-4-14-4-20 2-6-8-14-8-26-8s-20 0-26 8c-6-6-12-6-20-2z"/><path d="M14 78c4-30 24-48 46-48s42 18 46 48c-8-4-14-4-20 2-6-8-14-8-26-8s-20 0-26 8c-6-6-12-6-20-2z"/><path class="st" d="M44 38l8 28M76 38l-8 28"/></svg>',
+plate:A+'<ellipse class="fill" cx="60" cy="72" rx="46" ry="16"/><ellipse cx="60" cy="72" rx="46" ry="16"/><ellipse cx="60" cy="68" rx="30" ry="9"/><path class="st" d="M42 64c5-12 31-12 36 0"/><circle class="st" cx="60" cy="58" r="6"/></svg>'
+};
+const MENU={
+Café:[["Espresso",38,"cup","Corto e intenso."],["Capuchino",58,"cup","Espresso, leche y espuma."],["Café de olla",48,"mug","Canela y piloncillo, en jarrito."],["Cold brew",65,"glass","Infusionado en frío 16 horas."]],
+Pan:[["Concha",28,"concha","Vainilla o chocolate."],["Croissant",42,"croissant","Hojaldre con mantequilla."],["Chilaquiles verdes",95,"plate","Con huevo o pollo."],["Molletes",75,"plate","Frijol, queso y pico de gallo."]],
+Bebidas:[["Chocolate caliente",58,"mug","Cacao de Tabasco con leche."],["Té chai",55,"mug","Especiado, con leche."],["Jugo de naranja",48,"glass","Natural, sin azúcar añadida."],["Limonada mineral",42,"glass","Con agua mineral."]]
+};
+const $=id=>document.getElementById(id);
+let tab='Café',cur=MENU.Café[0],cart={},open=false;
+const money=n=>'$'+n;
+function tabs(){$('tabs').innerHTML=Object.keys(MENU).map(t=>`<button role="tab" aria-selected="${t===tab}" data-t="${t}">${t}</button>`).join('')}
+function list(){$('list').innerHTML=MENU[tab].map((it,i)=>`<li class="row ${it===cur?'on':''}" data-i="${i}"><button class="nm" data-s="${i}"><b>${it[0]}</b><small>${it[3]}</small></button><span class="pr">${money(it[1])}</span><button class="add ${cart[it[0]]?'done':''}" data-a="${i}" aria-label="Agregar ${it[0]}">${cart[it[0]]?'✓':'+'}</button></li>`).join('')}
+function panel(anim){$('panel').innerHTML=ART[cur[2]]+`<h3>${cur[0]}</h3><p>${cur[3]}</p><button class="pill" data-a="cur">Agregar · ${money(cur[1])}</button>`;if(anim){const s=$('panel').querySelector('svg');s.classList.add('pop')}}
+function select(it){if(it===cur)return;cur=it;list();panel(true)}
+function renderCart(){
+const ents=Object.values(cart),n=ents.reduce((a,e)=>a+e.q,0),t=ents.reduce((a,e)=>a+e.q*e.p,0);
+$('bar').classList.toggle('show',n>0);
+$('count').textContent='Mi pedido · '+n+(n===1?' artículo':' artículos');$('total').textContent=money(t);
+$('drawer').innerHTML=ents.map(e=>`<div class="li"><span>${e.n}</span><span class="q"><button data-d="${e.n}" aria-label="Quitar uno">−</button>${e.q}<button data-u="${e.n}" aria-label="Agregar uno">+</button></span><span>${money(e.q*e.p)}</span></div>`).join('')+`<div class="ft"><button data-clear>Vaciar</button><strong>Total ${money(t)}</strong></div><p class="ok">Muestra esta pantalla en el mostrador para ordenar.</p>`;
+$('drawer').classList.toggle('open',open&&n>0);$('toggle').setAttribute('aria-expanded',open&&n>0);
+}
+function add(it){const c=cart[it[0]]||(cart[it[0]]={n:it[0],p:it[1],q:0});c.q++;list();renderCart()}
+document.addEventListener('click',e=>{
+const t=e.target.closest('button');if(!t)return;
+if(t.dataset.t){tab=t.dataset.t;cur=MENU[tab][0];tabs();list();panel(true)}
+else if(t.dataset.s){select(MENU[tab][+t.dataset.s])}
+else if(t.dataset.a){add(t.dataset.a==='cur'?cur:MENU[tab][+t.dataset.a])}
+else if(t.id==='toggle'){open=!open;renderCart()}
+else if(t.dataset.u){cart[t.dataset.u].q++;renderCart()}
+else if(t.dataset.d){const c=cart[t.dataset.d];if(--c.q<=0)delete cart[t.dataset.d];list();renderCart()}
+else if('clear' in t.dataset){cart={};open=false;list();renderCart()}
+});
+$('list').addEventListener('mouseover',e=>{const r=e.target.closest('.row');if(r)select(MENU[tab][+r.dataset.i])});
+$('list').addEventListener('focusin',e=>{const r=e.target.closest('.row');if(r)select(MENU[tab][+r.dataset.i])});
+tabs();list();panel(false);renderCart();
+</script>
+</body>
+</html>
